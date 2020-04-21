@@ -1,0 +1,10 @@
+version: '3'
+services:
+  metadataupdater:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: bash -c 'python -u main.py'
+    volumes:
+     - /media/seagatehd/torrents/films:/media/films
+    restart: always
