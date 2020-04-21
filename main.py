@@ -18,8 +18,9 @@ def watch_file( dirs, pattern, check_interval=60 ):
                     f = file.split(".")
                     new_f = "{} ({}).{}".format(" ".join(p.group('name').split(".")), p.group('year'), p.group('ext'))
                     new_srt = "{} ({}).spa.srt".format(" ".join(p.group('name').split(".")), p.group('year'))
-                    os.rename(os.path.join(dir, ".".join(f[:-1])+"_es.srt"), os.path.join(dir, new_srt))
                     os.rename(os.path.join(dir,file), os.path.join(dir, new_f))
+                    if os.path.exists(os.path.join(dir, ".".join(f[:-1])+"_es.srt")):
+                        os.rename(os.path.join(dir, ".".join(f[:-1])+"_es.srt"), os.path.join(dir, new_srt))
         # Wait for check interval seconds, then check again.
         time.sleep( check_interval )
 
